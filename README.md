@@ -633,7 +633,7 @@ Esse componente renderizará a biblioteca de filmes que renderizará a `searchBa
   - Será validado se o componente é renderizado com sucesso
 
 
-### 16 - Configure o estado inicial do componente `MovieLibray`
+### 16 - Configure o estado inicial do componente `MovieLibrary`
 
 O componente `<MovieLibrary />` possui como estado as seguintes propriedades:
 
