@@ -2,6 +2,7 @@ import React from 'react';
 import InputText from './InputText';
 import TextArea from './TextArea';
 import InputNumber from './InputNumber';
+import Select from './Select';
 
 class AddMovie extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
+      genre: '',
     };
   }
 
@@ -23,7 +25,7 @@ class AddMovie extends React.Component {
 
   render() {
     /* const { onClick } = this.props; */
-    const { title, subtitle, imagePath, storyline, rating } = this.state;
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
         <InputText
@@ -63,6 +65,10 @@ class AddMovie extends React.Component {
           onChange={ this.handleInput }
         />
 
+        <Select
+          value={ genre }
+          onChange={ this.handleInput }
+        />
       </form>
     );
   }
