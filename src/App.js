@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header />
       <SearchBar />
-      <AddMovie />
+      <AddMovie onClick={ () => console.log('teste1') } />
     </div>
   );
 }
