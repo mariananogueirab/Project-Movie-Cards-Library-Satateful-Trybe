@@ -17,25 +17,64 @@ class MovieLibrary extends React.Component {
   }
 
   onSearchTextChange = ({ target }) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
-      searchText: value,
+      searchText: target.value,
     });
+    this.onSearchTextMovie();
   }
 
-  onBookmarkedChange = ({ target }) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+  /*   onSearchTextMovie = () => {
+    const { searchText } = this.state;
+    const { movies } = this.props;
     this.setState({
-      bookmarkedOnly: value,
+      movies: movies.find(({ title }) => title === searchText),
     });
+  } */
+
+  onBookmarkedChange = ({ target }) => {
+    const { bookmarkedOnly } = this.state;
+    const { movies } = this.props;
+    if (!bookmarkedOnly) {
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      this.setState({
+        bookmarkedOnly: value,
+        movies: movies.filter(({ bookmarked }) => bookmarked === true),
+      });
+    } else {
+      const value = target.type === 'checkbox' ? target.checked = false : target.value;
+      this.setState({
+        bookmarkedOnly: value,
+        movies,
+      });
+    }
   }
 
   onSelectedGenreChange = ({ target }) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      selectedGenre: value,
-    });
-  }
+    const { bookmarkedOnly } = this.state;
+    const { movies } = this.props;
+    if (!bookmarkedOnly && target.value === '') {
+      this.setState({
+        selectedGenre: target.value,
+        movies,
+      });
+    } else if (bookmarkedOnly && target.value === '') {
+      this.setState({
+        selectedGenre: target.value,
+        movies: movies.filter(({ bookmarked }) => bookmarked === true),
+      });
+    } else if (bookmarkedOnly && target.value !== '') {
+      this.setState({
+        selectedGenre: target.value,
+        movies: movies.filter(({ bookmarked }) => bookmarked === true)
+          .filter(({ genre }) => genre === target.value),
+      });
+    } else if (target.value !== '') {
+      this.setState({
+        selectedGenre: target.value,
+        movies: movies.filter(({ genre }) => genre === target.value),
+      });
+    }
+  } // tem que arrumar, quando volta pra todos não funciona
 
   render() {
     const {
