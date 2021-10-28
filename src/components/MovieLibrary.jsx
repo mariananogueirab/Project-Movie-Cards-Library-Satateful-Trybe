@@ -74,7 +74,7 @@ class MovieLibrary extends React.Component {
         movies: movies.filter(({ genre }) => genre === target.value),
       });
     }
-  } // tem que arrumar, quando volta pra todos não funciona
+  }
 
   render() {
     const {
